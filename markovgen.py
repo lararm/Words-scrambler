@@ -65,22 +65,21 @@ class Markov(object):
 		##seed = random.randint(0, self.word_size2-3)
 		seed_word, next_word = self.words2[seed], self.words2[seed+1]
 		w1, w2 = seed_word, next_word
-		print "initial words:", w1,w2
-		w2 = random.choice(self.cache[(w1, w2)])	
+		print "initial words:", w1,w2	
 		gen_words = []
 		for i in xrange(size):
 			gen_words.append(w1)
 			try:
 				temp = w1
 				w1 = w2
-				#print "temp, w2:", temp,w2
+				print "temp, w2:", temp,w2
 				print "self.cache:",2, self.cache[w1,w2]
 				w1,w2 = random.choice(self.cache[(temp, w2)])		
 				#w2 = random.choice([1, 2, 3, 5, 9])		
 				print "W2:",w2
 			except KeyError:
-				#print "just jumpped to error"
-				#seed = random.randint(0, self.word_size2-3)
+				print "just jumpped to error"
+				seed = random.randint(0, self.word_size2-3)
 				print "the seed is:",seed
 				#import pdb; pdb.set_trace()
 				w2= self.words2[seed+2]
